@@ -96,3 +96,14 @@ export const deleteFaq = async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 };
+
+// @desc Get total number of FAQs
+// @route GET /api/faqs/count
+export const getFaqCount = async (req, res) => {
+    try {
+      const count = await Faq.countDocuments();
+      res.status(200).json({ totalFaqs: count });
+    } catch (error) {
+      res.status(500).json({ message: "Server error", error });
+    }
+  };
