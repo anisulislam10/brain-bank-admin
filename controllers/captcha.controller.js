@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from "axios";
 
-exports.verifyCaptcha = async (req, res) => {
+export const verifyCaptcha = async (req, res) => {
   const { token } = req.body;
 
   if (!token) {
@@ -9,7 +9,7 @@ exports.verifyCaptcha = async (req, res) => {
 
   try {
     const response = await axios.post(
-      `https://www.google.com/recaptcha/api/siteverify`,
+      "https://www.google.com/recaptcha/api/siteverify",
       `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
       { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
     );
@@ -20,6 +20,7 @@ exports.verifyCaptcha = async (req, res) => {
       res.status(400).json({ error: "CAPTCHA verification failed" });
     }
   } catch (error) {
+    console.error("CAPTCHA Error:", error);
     res.status(500).json({ error: "Server error" });
   }
 };
