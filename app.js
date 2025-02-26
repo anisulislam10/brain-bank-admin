@@ -12,6 +12,7 @@ import headerRoutes from "./routes/header.routes.js";
 import faqRoutes from "./routes/faq.routes.js";
 import teamRoutes from "./routes/team.routes.js";
 import whyusRoutes from "./routes/whyus.routes.js";
+import captchaRoutes from './routes/captcha.routes.js'
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.use("/api/header", headerRoutes);
 app.use("/api/faq", faqRoutes);
 app.use("/api/team", teamRoutes);
 app.use("/api/whyus", whyusRoutes);
+app.use("/api/captcha", captchaRoutes)
 
 // Database Connection
 mongoose.connect(process.env.MONGO_URI, {
